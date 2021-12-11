@@ -10,34 +10,27 @@
 
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {BasicStageScreen, StageListScreen, TopScreen} from './src/screens';
 
 type RootStackKey = 'Top' | 'StageList' | 'BasicStage';
 
 export type RootStackParamList = {
-  [key in RootStackKey]: undefined
+  [key in RootStackKey]: undefined;
 };
-const Drawer = createDrawerNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Top">
-        <Drawer.Screen name={'Top'} component={TopScreen} />
-        <Drawer.Screen
-          name={'StageList'}
-          component={StageListScreen}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Drawer.Screen
-          name={'BasicStage'}
-          component={BasicStageScreen}
-        />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name={'Top'} component={TopScreen} />
+          <Stack.Screen name={'StageList'} component={StageListScreen} />
+          <Stack.Screen name={'BasicStage'} component={BasicStageScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 };
 

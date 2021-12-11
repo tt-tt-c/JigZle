@@ -1,13 +1,15 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {RootStackParamList} from '../../App';
-import {NavigationStackProp} from 'react-navigation-stack';
+import {Button, Image, StyleSheet, Text, View} from 'react-native';
 import ShareButton from '../components/ShareButton';
 import MapLinkButton from '../components/MapLinkButton';
+import { NavigationStackProp } from 'react-navigation-stack';
+import { RootStackParamList } from '../../App';
 
-const TopScreen = () => {
-  const navigation = useNavigation<NavigationStackProp<RootStackParamList>>();
+type Props = {
+  navigation: NavigationStackProp<RootStackParamList>;
+};
+
+const TopScreen = ({navigation}:Props) => {
   return (
     <>
       <View>
@@ -31,11 +33,24 @@ const TopScreen = () => {
       </View>
 
       <View>
-        <ShareButton/>
-        <MapLinkButton/>
+        <ShareButton />
+        <MapLinkButton />
+      </View>
+      <View>
+        <Image
+          style={styles.image}
+          source={require('../assets/img/basic_slide_01.webp')}
+        />
       </View>
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  image: {
+    width: 300,
+    height: 300,
+  },
+});
 
 export default TopScreen;
